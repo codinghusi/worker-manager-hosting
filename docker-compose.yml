@@ -13,7 +13,7 @@ services:
 
   graphiql:
     image: npalm/graphiql
-    environment: 
+    environment:
       API_URL: /dgraph/graphql
     depends_on: 
       - alpha
