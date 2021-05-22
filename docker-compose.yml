@@ -11,10 +11,6 @@ services:
       - admin_graphiql
     restart: on-failure
 
-  keys:
-    build:
-      context: keys
-
   graphiql:
     image: npalm/graphiql
     environment: 
