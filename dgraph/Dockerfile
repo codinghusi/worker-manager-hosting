@@ -1,4 +1,4 @@
-FROM dgraph/dgraph:e15249e1fd23
+FROM dgraph/dgraph:master
 
 RUN mkdir -p /opt
 WORKDIR /opt

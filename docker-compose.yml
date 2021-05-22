@@ -26,7 +26,7 @@ services:
       - alpha
 
   zero:
-    image: dgraph/dgraph:e15249e1fd23
+    image: dgraph/dgraph:master
     labels:
       cluster: test
       service: zero
