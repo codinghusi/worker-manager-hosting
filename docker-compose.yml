@@ -1,0 +1,60 @@
+version: "3.3"
+services:
+  reverseproxy:
+    build:
+      context: reverseproxy
+    ports:
+      - 80:80
+    depends_on:
+      - alpha
+      - graphiql
+      - admin_graphiql
+    restart: on-failure
+
+  keys:
+    build:
+      context: keys
+
+  graphiql:
+    image: npalm/graphiql
+    environment: 
+      API_URL: /dgraph/graphql
+    depends_on: 
+      - alpha
+
+  admin_graphiql:
+    image: npalm/graphiql
+    environment: 
+      API_URL: /dgraph/admin
+    depends_on: 
+      - alpha
+
+  zero:
+    image: dgraph/dgraph:e15249e1fd23
+    labels:
+      cluster: test
+      service: zero
+    volumes:
+      - ./dgraph-vol:/dgraph
+    ports:
+      - 5080:5080
+      - 6080:6080
+    restart: on-failure
+    command: dgraph zero -v=2 --logtostderr --bindall --expose_trace --profile_mode block --block_rate 10 --my=zero:5080
+  
+  alpha:
+    labels:
+      cluster: test
+      service: alpha
+    build:
+      context: ./dgraph
+      dockerfile: Dockerfile
+    volumes:
+      - ./dgraph-vol:/dgraph
+    restart: on-failure
+    depends_on: 
+      - zero
+    ports:
+      - 7080:7080
+      - 8080:8080
+      - 9080:9080
