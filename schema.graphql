@@ -1,0 +1,14 @@
+type Worker {
+  id: ID!
+  name: String!
+  tlSection: String!
+  segment: String!
+  workArea: String!
+  process: WorkProcess
+}
+
+type WorkProcess {
+  id: ID!
+  name: String
+  workers: [Worker] @hasInverse(field: "process")
+}
