@@ -2,7 +2,7 @@
 
 type Worker {
   id: ID!
-  name: String! @id
+  name: String! @id @search
   tlSection: Worker_tlSection!
   segment: Worker_segment!
   workArea: Worker_workArea!
