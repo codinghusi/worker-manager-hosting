@@ -1,7 +1,9 @@
+# Dgraph.Allow-Origin "*" 
+
 enum WorkerFieldType {
-  tlSection,
-  segment,
-  workArea
+  TL_SECTION
+  SEGMENT
+  WORK_AREA
 }
 
 type Worker {
