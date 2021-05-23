@@ -1,10 +1,22 @@
+enum WorkerFieldType {
+  tlSection,
+  segment,
+  workArea
+}
+
 type Worker {
   id: ID!
-  name: String!
-  tlSection: String!
-  segment: String!
-  workArea: String!
+  name: String! @id
+  tlSection: WorkerField!
+  segment: WorkerField!
+  workArea: WorkerField!
   process: WorkProcess
+}
+
+type WorkerField {
+  id: ID!
+  value: String! @id
+  fieldType: WorkerField!
 }
 
 type WorkProcess {
