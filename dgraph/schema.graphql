@@ -18,7 +18,7 @@ type Worker {
 type WorkerField {
   id: ID!
   value: String! @id
-  fieldType: WorkerField!
+  fieldType: WorkerFieldType!
 }
 
 type WorkProcess {
