@@ -2,23 +2,11 @@
 
 type Worker {
   id: ID!
-  name: String! @id @search
-  tlSection: Worker_tlSection!
-  segment: Worker_segment!
-  workArea: Worker_workArea!
+  name: String! @id
+  tlSection: String!
+  segment: String!
+  workArea: String!
   process: WorkProcess
-}
-
-type Worker_tlSection {
-  value: String! @id
-}
-
-type Worker_segment {
-  value: String! @id
-}
-
-type Worker_workArea {
-  value: String! @id
 }
 
 type WorkProcess {
@@ -26,3 +14,30 @@ type WorkProcess {
   name: String
   workers: [Worker] @hasInverse(field: "process")
 }
+
+# type Worker {
+#   id: ID!
+#   name: String! @id @search
+#   tlSection: Worker_tlSection!
+#   segment: Worker_segment!
+#   workArea: Worker_workArea!
+#   process: WorkProcess
+# }
+
+# type Worker_tlSection {
+#   value: String! @id
+# }
+
+# type Worker_segment {
+#   value: String! @id
+# }
+
+# type Worker_workArea {
+#   value: String! @id
+# }
+
+# type WorkProcess {
+#   id: ID!
+#   name: String
+#   workers: [Worker] @hasInverse(field: "process")
+# }
