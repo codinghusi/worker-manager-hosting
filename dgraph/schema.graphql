@@ -1,66 +1,24 @@
 # Dgraph.Allow-Origin "*" 
 
-# type Worker {
-#   id: ID!
-#   name: String! @id
-#   tlSection: String!
-#   segment: String!
-#   workArea: String!
-#   process: WorkProcess
-# }
-
-# type WorkProcess {
-#   id: ID!
-#   name: String
-#   workers: [Worker] @hasInverse(field: "process")
-# }
-
-# type Worker {
-#   id: ID!
-#   name: String! @id @search
-#   tlSection: Worker_tlSection!
-#   segment: Worker_segment!
-#   workArea: Worker_workArea!
-#   process: WorkProcess
-# }
-
-# type Worker_tlSection {
-#   value: String! @id
-# }
-
-# type Worker_segment {
-#   value: String! @id
-# }
-
-# type Worker_workArea {
-#   value: String! @id
-# }
-
-# type WorkProcess {
-#   id: ID!
-#   name: String
-#   workers: [Worker] @hasInverse(field: "process")
-# }
-
-enum WorkerFieldType {
-  TL_SECTION
-  SEGMENT
-  WORK_AREA
-}
-
 type Worker {
   id: ID!
-  name: String! @id
-  tlSection: WorkerField!
-  segment: WorkerField!
-  workArea: WorkerField!
+  name: String! @id @search
+  tlSection: Worker_tlSection!
+  segment: Worker_segment!
+  workArea: Worker_workArea!
   process: WorkProcess
 }
 
-type WorkerField {
-  id: ID!
+type Worker_tlSection {
   value: String! @id
-  fieldType: WorkerFieldType!
+}
+
+type Worker_segment {
+  value: String! @id
+}
+
+type Worker_workArea {
+  value: String! @id
 }
 
 type WorkProcess {
