@@ -9,7 +9,7 @@ services:
       - alpha
       - graphiql
       - admin_graphiql
-    restart: on-failure
+    restart: always
 
   graphiql:
     image: npalm/graphiql
@@ -17,6 +17,7 @@ services:
       API_URL: /dgraph/graphql
     depends_on: 
       - alpha
+    restart: always
 
   admin_graphiql:
     image: npalm/graphiql
@@ -24,6 +25,7 @@ services:
       API_URL: /dgraph/admin
     depends_on: 
       - alpha
+    restart: always
 
   zero:
     image: dgraph/dgraph:master
@@ -35,7 +37,7 @@ services:
     ports:
       - 5080:5080
       - 6080:6080
-    restart: on-failure
+    restart: always
     command: dgraph zero -v=2 --logtostderr --bindall --expose_trace --profile_mode block --block_rate 10 --my=zero:5080
   
   alpha:
@@ -47,7 +49,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./dgraph-vol:/dgraph
-    restart: on-failure
+    restart: always
     depends_on: 
       - zero
     ports:
