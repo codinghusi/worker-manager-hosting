@@ -6,7 +6,7 @@ type Worker {
   tlSection: Worker_tlSection!
   segment: Worker_segment!
   workArea: Worker_workArea!
-  process: WorkProcess
+  worksteps: [Workstep]
 }
 
 type Worker_tlSection {
@@ -21,8 +21,10 @@ type Worker_workArea {
   value: String! @id
 }
 
-type WorkProcess {
+type Workstep {
   id: ID!
-  name: String
-  workers: [Worker] @hasInverse(field: "process")
+  name: String!
+  machineDuration: String!
+  workDuration: String!
+  walkDuration: String!
 }
